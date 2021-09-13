@@ -4,19 +4,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Order of execution of Threads cannot be predicted. Below is the example.
-        for (int i = 0; i < 10; i++) {
-            System.out.println(i);
-            // We need not use new Thread() because this class already extended Thread
-            ThreadByExtends threadByExtends = new ThreadByExtends();
-            // Thread.start() will call Thread.run()
-            threadByExtends.start();
+        /*Suppose we want to override methods from a Business Model
+        and use Thread(s), then we need to implement Runnable only
+        because Java doesn't support multiple inheritance
+        meaning : one class can extend only one class (never >1)*/
 
-            // We need to use new Thread(Runnable) to convert to Thread
-            Thread threadByImplements = new Thread(new ThreadByImplements());
-            // Thread.start() will call Thread.run()
-            threadByImplements.start();
-        }
+
+        // Creating Runnable object to pass into thread
+        ThreadByImplements threadByImplements = new ThreadByImplements();
+        // We need to use new Thread(Runnable) to convert to Thread
+        Thread thread = new Thread(threadByImplements);
+        // Thread.start() will call Thread.run()
+        thread.start();
+        threadByImplements.showData("hello");
+
 
     }
 }
