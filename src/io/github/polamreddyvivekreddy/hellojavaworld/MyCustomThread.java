@@ -9,11 +9,14 @@ public class MyCustomThread implements Runnable{
     }
 
     @Override
-    public void run() {
-        System.out.println("I am "+ Thread.currentThread().getName());
+    /*Without synchronized keyword
+    you can see the order of threads are jumbled*/
+//    public void run() {
+    public synchronized void run() {
         for(int i=1;i<=10;i++){
             int result = i*number;
-            System.out.println(i + " * " + number + " = " + result);
+            System.out.println(Thread.currentThread().getName() + ":" +
+                    i + " * " + number + " = " + result);
         }
     }
 }
