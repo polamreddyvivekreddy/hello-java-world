@@ -17,8 +17,6 @@ public class MyCustomThread implements Runnable {
     @Override
     public void run() {
 
-
-
         // Non-sensitive data below for multiple threads, no synchronization required
         System.out.println("hello, I begin the journey : " + Thread.currentThread().getName());
 
@@ -26,16 +24,23 @@ public class MyCustomThread implements Runnable {
         /* lock can help in synchronization especially
          when you have a series of synchronized and non-synchronized block.
          In such cases, using many synchronized blocks makes code look ugly and also error prone */
-        locker.lock();
-        System.out.println("welcome " + Thread.currentThread().getName() + ", after locker.lock() for printing multiples \n " +
-                "other threads cannot access printing of multiples before I complete my multiples ");
+        try{
+            locker.lock();
+            System.out.println("welcome " + Thread.currentThread().getName() + ", after locker.lock() for printing multiples \n " +
+                    "other threads cannot access printing of multiples before I complete my multiples ");
 
-        for (int i = 1; i <= 10; i++) {
-            int result = i * number;
-            System.out.println(Thread.currentThread().getName() + ":" +
-                    i + " * " + number + " = " + result);
+            for (int i = 1; i <= 10; i++) {
+                int result = i * number;
+                System.out.println(Thread.currentThread().getName() + ":" +
+                        i + " * " + number + " = " + result);
+            }
+        } catch (Exception e) {
+            System.out.println("exception during printing multiples: "+e);
+        }finally {
+            locker.unlock(); //even if some error occurs in try block, lock is unlocked in finally block for the sake of other threads
         }
-        locker.unlock();
+
+
 
 
         // Non-sensitive data below for multiple threads, no synchronization required
