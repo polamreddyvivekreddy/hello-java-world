@@ -1,25 +1,19 @@
 package io.github.polamreddyvivekreddy.hellojavaworld;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-
 public class Main {
+
+    static volatile int SHARED_INT_VALUE = 0;
 
     public static void main(String[] args) {
 
-        // Helps in implementing Producer Consumer Design Pattern
-        BlockingQueue<Integer> blockingQueue = new LinkedBlockingQueue<>(5);
 
         // We need to use new Thread(Runnable) to convert to Thread
-        Thread producerThread = new Thread(new ProducerThread(blockingQueue), "producerThread");
-        Thread consumerThread = new Thread(new ConsumerThread(blockingQueue), "consumerThread");
+        Thread actorThread = new Thread(new ActorThread(), "actorThread");
+        Thread observerThread = new Thread(new ObserverThread(), "observerThread");
 
-        producerThread.start();
-        consumerThread.start();
+        actorThread.start();
+        observerThread.start();
 
-        // TODO: Find a relevant example
-        /*producerThread.join();
-        consumerThread.join();*/
 
     }
 }
