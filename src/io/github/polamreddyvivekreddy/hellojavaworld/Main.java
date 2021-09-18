@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
 
-        // Creating a common object for multiple threads
+        // Creating a common object for multiple threads.
+        // Object because it has wait() & notify() by default
         Integer integerObject = 10;
         // We need to use new Thread(Runnable) to convert to Thread
 
