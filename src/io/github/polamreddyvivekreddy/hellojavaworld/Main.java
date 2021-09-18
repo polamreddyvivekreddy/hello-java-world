@@ -6,19 +6,20 @@ public class Main {
 
 
         // Creating a common object for multiple threads
-        MyCustomThread myCustomThread = new MyCustomThread(2);
+        Integer integerObject = 10;
         // We need to use new Thread(Runnable) to convert to Thread
-        Thread thread1 = new Thread(myCustomThread,"Thread1");
 
-        Thread thread2 = new Thread(myCustomThread,"Thread2");
+        Thread waitingThread = new Thread(new MyWaitingThread(integerObject),"WaitingThread");
 
-        Thread thread3 = new Thread(myCustomThread,"Thread3");
+        Thread notifyingThread = new Thread(new MyNotifyingThread(integerObject),"NotifyingThread");
 
-        thread1.start();
+        //setting priority to ensure waitingThread begins first to make the demo meaningful
+        waitingThread.setPriority(Thread.MAX_PRIORITY);
+        waitingThread.start();
 
-        thread2.start();
+        notifyingThread.setPriority(Thread.MIN_PRIORITY);
+        notifyingThread.start();
 
-        thread3.start();
 
 
 
