@@ -7,15 +7,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        OurCustomGeneric<String> ourCustomGeneric1 = new OurCustomGeneric<>();
-        ourCustomGeneric1.setOurCustomObject("Vivek");
-//        ourCustomGeneric1.setOurCustomObject(24); // Won't work
-        ourCustomGeneric1.getOurCustomObject();
+        CustomGenericMethod customGenericMethod = new CustomGenericMethod();
+        Integer[] integers = {1, 2, 3, 4};
+        String[] strings = {"a", "b", "c", "d"};
 
-        OurCustomGeneric<Integer> ourCustomGeneric2 = new OurCustomGeneric<>();
-        ourCustomGeneric2.setOurCustomObject(24);
-//        ourCustomGeneric2.setOurCustomObject("Vivek"); // Won't work
-        ourCustomGeneric2.getOurCustomObject();
+        customGenericMethod.getElements(integers);
+        customGenericMethod.getElements(strings);
 
     }
 }
@@ -26,18 +23,13 @@ public class Main {
  * 3. K -> Key
  * 4. N -> Number
  * 5. V -> Value
- *
  */
 
-class OurCustomGeneric<T>{
-    private T ourCustomObject;
-
-    public T getOurCustomObject() {
-        return ourCustomObject;
-    }
-
-    public void setOurCustomObject(T ourCustomObject) {
-        this.ourCustomObject = ourCustomObject;
+class CustomGenericMethod {
+    public <E> void getElements(E[] elements) {
+        for (int i = 0; i < elements.length; i++) {
+            System.out.println(elements[i]);
+        }
     }
 }
 
