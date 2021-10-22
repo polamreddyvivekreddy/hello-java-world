@@ -3,7 +3,14 @@ package io.github.polamreddyvivekreddy.hellojavaworld;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("hello-java-world");
+
+        Sports sports = ()-> System.out.println("Welcome to selection");
+        sports.doSelection();
+
+    }
+
+    @FunctionalInterface
+    interface Sports{
+        void doSelection();
     }
 }
