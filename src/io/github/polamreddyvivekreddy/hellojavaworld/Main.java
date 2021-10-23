@@ -1,9 +1,12 @@
 package io.github.polamreddyvivekreddy.hellojavaworld;
 
+import java.util.function.Supplier;
+
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
-        System.out.println("hello-java-world");
+
+        Supplier<String> supplier = () -> "hello";
+        System.out.println(supplier.get());
     }
 }
