@@ -8,6 +8,7 @@ public class Main {
         System.out.println(interfaceImplementor.doSomething());
         System.out.println(interfaceImplementor.doSomethingElse());
         System.out.println(interfaceImplementor.doSomethingElseMore());
+        System.out.println(AnInterface.NAME);
     }
 
 }
