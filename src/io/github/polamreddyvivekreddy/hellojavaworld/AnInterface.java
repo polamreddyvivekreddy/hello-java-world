@@ -2,6 +2,9 @@ package io.github.polamreddyvivekreddy.hellojavaworld;
 
 public interface AnInterface {
 
+    // fields are always public final i.e., CONSTANTS
+    String NAME = "myName";
+
     // methods in interface are always public abstract by default(not default keyword, just english :) )
     String doSomething();
 
